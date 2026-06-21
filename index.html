@@ -7,7 +7,7 @@
 <title>🔥 Ofertas Shopee</title>
 
 <meta property="og:title" content="🔥 Produtos Selecionados">
-<meta property="og:description" content="Promoções, discounts e ofertas imperdíveis da Shopee.">
+<meta property="og:description" content="Promoções, descontos e ofertas imperdíveis da Shopee.">
 <meta property="og:image" content="https://carlosnegociodigital.github.io/myshop/imagem1.webp">
 <meta property="og:url" content="https://carlosnegociodigital.github.io/myshop/">
 
@@ -56,56 +56,52 @@ font-weight:bold;
 }
 
 /* =======================================================
-   NOVA SEÇÃO: 4 CARROSSÉIS DE BANNERS (ANTES DOS PRODUTOS)
+   ESTRUTURA DOS CARROSSÉIS AUTOMÁTICOS (INFINITOS)
    ======================================================= */
-.secao-banners {
+.secao-banners-auto {
 max-width: 1200px;
 margin: 20px auto 0 auto;
 padding: 0 15px;
+overflow: hidden;
 }
 
 .titulo-banners {
 color: #333;
-font-size: 16px;
-margin: 15px 0 8px 0;
+font-size: 15px;
+margin: 20px 0 8px 0;
 font-weight: bold;
+border-left: 4px solid #ff5722;
+padding-left: 8px;
 }
 
-.banner-wrapper {
-position: relative;
-display: flex;
-align-items: center;
-margin-bottom: 15px;
+/* Janela que esconde o que passa do limite da tela */
+.carrossel-janela {
+overflow: hidden;
+width: 100%;
+background: transparent;
+padding: 5px 0;
 }
 
-.banner-container {
+/* Trilho que segura os banners e roda a animação */
+.carrossel-trilho {
 display: flex;
 gap: 15px;
-overflow-x: auto;
-scroll-behavior: smooth;
-width: 100%;
-padding-bottom: 5px;
-scrollbar-width: none; /* Esconde scroll no Firefox */
+width: max-content;
 }
 
-.banner-container::-webkit-scrollbar {
-display: none; /* Esconde scroll no Chrome/Safari */
-}
-
-/* Estilo do Card do Banner */
+/* Estilo de cada banner */
 .banner-link {
-flex-shrink: 0;
 display: block;
-width: 280px; /* Tamanho ideal para banners no formato retângulo/card */
-height: 140px;
+width: 280px;
+height: 120px;
 border-radius: 10px;
 overflow: hidden;
-box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 transition: transform 0.2s;
 }
 
 .banner-link:hover {
-transform: scale(1.02);
+transform: scale(1.03);
 }
 
 .banner-link img {
@@ -114,33 +110,35 @@ height: 100%;
 object-fit: cover;
 }
 
-/* Setas de navegação dos banners */
-.seta-banner {
-background: rgba(0, 0, 0, 0.5);
-color: white;
-border: none;
-width: 30px;
-height: 30px;
-border-radius: 50%;
-position: absolute;
-cursor: pointer;
-font-size: 14px;
-z-index: 5;
-display: flex;
-align-items: center;
-justify-content: center;
+/* --- ANIMAÇÕES CSS (Efeito Infinito) --- */
+/* Se passar o mouse por cima do carrossel, ele pausa para o usuário clicar */
+.carrossel-janela:hover .carrossel-trilho {
+animation-play-state: paused;
 }
-.seta-banner:hover { background: rgba(255, 87, 34, 0.9); }
-.seta-esq { left: -10px; }
-.seta-dir { right: -10px; }
 
-@media (max-width: 768px) {
-    .seta-banner { display: none; } /* No celular desliza com o dedo */
-    .banner-link { width: 240px; height: 120px; }
+/* Carrossel 1 e 3 rolam para a Esquerda */
+.anima-esquerda {
+animation: rolarEsquerda 20s linear infinite;
 }
+
+@keyframes rolarEsquerda {
+0% { transform: translateX(0); }
+100% { transform: translateX(calc(-50% - 7.5px)); } /* Ajuste perfeito considerando o gap */
+}
+
+/* Carrossel 2 e 4 rolam para a Direita (Gera um efeito visual bem legal alternado) */
+.anima-direita {
+animation: rolarDireita 20s linear infinite;
+}
+
+@keyframes rolarDireita {
+0% { transform: translateX(calc(-50% - 7.5px)); }
+100% { transform: translateX(0); }
+}
+
 
 /* =======================================================
-   PRODUTOS (GRADE ORIGINAL VOLTOU AO NORMAL)
+   PRODUTOS (SUA GRADE ORIGINAL)
    ======================================================= */
 .produtos{
 max-width:1200px;
@@ -223,78 +221,59 @@ margin-top:40px;
 <header>
 <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopee_logo.svg">
 <h1>🔥 Ofertas Exclusivas Shopee</h1>
-<p>Promoções e discounts imperdíveis</p>
+<p>Promoções e descontos imperdíveis</p>
 <a href="https://s.shopee.com.br/9KZBQMY1Bz">Festival de Lojas Oficiais</a>
 </header>
 
-<section class="secao-banners">
+
+<section class="secao-banners-auto">
 
     <div class="titulo-banners">🎟️ 1. Cupons e Descontos Especiais</div>
-    <div class="banner-wrapper">
-        <button class="seta-banner seta-esq" onclick="scrollBanners(this, -1)">&#10094;</button>
-        <div class="banner-container">
-            <a href="SUO_LINK_AQUI" class="banner-link">
-                <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=400&q=80" alt="Banner 1">
-            </a>
-            <a href="SUO_LINK_AQUI" class="banner-link">
-                <img src="https://images.unsplash.com/photo-1572584642822-6f8de0243c93?auto=format&fit=crop&w=400&q=80" alt="Banner 2">
-            </a>
-            <a href="SUO_LINK_AQUI" class="banner-link">
-                <img src="https://images.unsplash.com/photo-1540959733332-eab4deceeaf7?auto=format&fit=crop&w=400&q=80" alt="Banner 3">
-            </a>
+    <div class="carrossel-janela">
+        <div class="carrossel-trilho anima-esquerda">
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1572584642822-6f8de0243c93?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1540959733332-eab4deceeaf7?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1572584642822-6f8de0243c93?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1540959733332-eab4deceeaf7?auto=format&fit=crop&w=400&q=80"></a>
         </div>
-        <button class="seta-banner seta-dir" onclick="scrollBanners(this, 1)">&#10095;</button>
     </div>
 
-    <div class="titulo-banners">⚡ 2. Ofertas em Tecnologia e Eletrônicos</div>
-    <div class="banner-wrapper">
-        <button class="seta-banner seta-esq" onclick="scrollBanners(this, -1)">&#10094;</button>
-        <div class="banner-container">
-            <a href="SUO_LINK_AQUI" class="banner-link">
-                <img src="https://images.unsplash.com/photo-1468436139062-f60a71c5c892?auto=format&fit=crop&w=400&q=80" alt="Banner 4">
-            </a>
-            <a href="SUO_LINK_AQUI" class="banner-link">
-                <img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=400&q=80" alt="Banner 5">
-            </a>
-            <a href="SUO_LINK_AQUI" class="banner-link">
-                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=400&q=80" alt="Banner 6">
-            </a>
+    <div class="titulo-banners">⚡ 2. Tecnologia e Smartphones</div>
+    <div class="carrossel-janela">
+        <div class="carrossel-trilho anima-direita">
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1468436139062-f60a71c5c892?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1468436139062-f60a71c5c892?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=400&q=80"></a>
         </div>
-        <button class="seta-banner seta-dir" onclick="scrollBanners(this, 1)">&#10095;</button>
     </div>
 
-    <div class="titulo-banners">👗 3. Achadinhos de Moda e Tendências</div>
-    <div class="banner-wrapper">
-        <button class="seta-banner seta-esq" onclick="scrollBanners(this, -1)">&#10094;</button>
-        <div class="banner-container">
-            <a href="SUO_LINK_AQUI" class="banner-link">
-                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=400&q=80" alt="Banner 7">
-            </a>
-            <a href="SUO_LINK_AQUI" class="banner-link">
-                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=400&q=80" alt="Banner 8">
-            </a>
-            <a href="SUO_LINK_AQUI" class="banner-link">
-                <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=400&q=80" alt="Banner 9">
-            </a>
+    <div class="titulo-banners">👗 3. Achadinhos de Moda & Look</div>
+    <div class="carrossel-janela">
+        <div class="carrossel-trilho anima-esquerda">
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=400&q=80"></a>
         </div>
-        <button class="seta-banner seta-dir" onclick="scrollBanners(this, 1)">&#10095;</button>
     </div>
 
-    <div class="titulo-banners">🏠 4. Tudo para Casa e Cozinha</div>
-    <div class="banner-wrapper">
-        <button class="seta-banner seta-esq" onclick="scrollBanners(this, -1)">&#10094;</button>
-        <div class="banner-container">
-            <a href="SUO_LINK_AQUI" class="banner-link">
-                <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=400&q=80" alt="Banner 10">
-            </a>
-            <a href="SUO_LINK_AQUI" class="banner-link">
-                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=400&q=80" alt="Banner 11">
-            </a>
-            <a href="SUO_LINK_AQUI" class="banner-link">
-                <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=400&q=80" alt="Banner 12">
-            </a>
+    <div class="titulo-banners">🏠 4. Casa, Cozinha e Organização</div>
+    <div class="carrossel-janela">
+        <div class="carrossel-trilho anima-direita">
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=400&q=80"></a>
+            <a href="SEU_LINK_AQUI" class="banner-link"><img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=400&q=80"></a>
         </div>
-        <button class="seta-banner seta-dir" onclick="scrollBanners(this, 1)">&#10095;</button>
     </div>
 
 </section>
@@ -355,18 +334,6 @@ margin-top:40px;
 <footer>
 © 2026 • Produtos Selecionados
 </footer>
-
-<script>
-function scrollBanners(botao, direcao) {
-    const wrapper = botao.parentElement;
-    const container = wrapper.querySelector('.banner-container');
-    const scrollAmount = 295; // Largura do banner + gap de 15px
-    container.scrollBy({
-        left: direcao * scrollAmount,
-        behavior: 'smooth'
-    });
-}
-</script>
 
 </body>
 </html>

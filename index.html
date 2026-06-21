@@ -63,17 +63,79 @@ padding:30px 15px;
 }
 
 .produtos h2{
-text-align:center;
 color:#ff5722;
-margin-bottom:25px;
+margin: 30px 0 15px 0;
+font-size: 22px;
+display: flex;
+align-items: center;
+gap: 10px;
 }
 
-.grade{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
+/* --- ESTILOS DOS CARROSSÉIS --- */
+.carrossel-wrapper {
+position: relative;
+display: flex;
+align-items: center;
 }
 
+.carrossel-container {
+display: flex;
+gap: 20px;
+overflow-x: auto;
+scroll-behavior: smooth;
+padding: 10px 5px 20px 5px;
+width: 100%;
+scrollbar-width: thin;
+scrollbar-color: #ff5722 #e0e0e0;
+}
+
+/* Barra de rolagem customizada para Chrome/Safari */
+.carrossel-container::-webkit-scrollbar {
+height: 6px;
+}
+.carrossel-container::-webkit-scrollbar-track {
+background: #e0e0e0;
+border-radius: 10px;
+}
+.carrossel-container::-webkit-scrollbar-thumb {
+background: #ff5722;
+border-radius: 10px;
+}
+
+/* Botões de Navegação dos Carrosséis */
+.seta {
+background: rgba(255, 87, 34, 0.9);
+color: white;
+border: none;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+position: absolute;
+cursor: pointer;
+font-weight: bold;
+font-size: 18px;
+z-index: 10;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+transition: 0.2s;
+}
+.seta:hover {
+background: #e64a19;
+transform: scale(1.1);
+}
+.seta-esq { left: -15px; }
+.seta-dir { right: -15px; }
+
+/* Esconder setas em telas de toque (onde o arrastar é natural) */
+@media (max-width: 768px) {
+.seta { display: none; }
+.seta-esq { left: 0; }
+.seta-dir { right: 0; }
+}
+
+/* Configuração do Card dentro do Carrossel */
 .card{
 background:white;
 border-radius:15px;
@@ -83,6 +145,9 @@ display:flex;
 flex-direction:column;
 text-align:center;
 transition:.3s;
+min-width: 260px;
+max-width: 260px;
+flex-shrink: 0; /* Impede que o card amasse */
 }
 
 .card:hover{
@@ -135,75 +200,136 @@ margin-top:40px;
 <body>
 
 <header>
-
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopee_logo.svg">
-
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopee_logo.svg" alt="Shopee">
 <h1>🔥 Ofertas Exclusivas Shopee</h1>
-
 <p>Promoções e descontos imperdíveis</p>
-
-<a href="https://s.shopee.com.br/9KZBQMY1Bz">
-Festival de Lojas Oficiais
-</a>
-
+<a href="https://s.shopee.com.br/9KZBQMY1Bz">Festival de Lojas Oficiais</a>
 </header>
-
 
 <section class="produtos">
 
-<h2>🛍 Produtos em Destaque</h2>
+    <h2>⌚ Smartwatches e Tecnologia</h2>
+    <div class="carrossel-wrapper">
+        <button class="seta seta-esq" onclick="scrollCarrossel(this, -1)">&#10094;</button>
+        <div class="carrossel-container">
+            <div class="card">
+                <img src="https://down-bs-br.img.susercontent.com/br-11134207-820lu-mmb8uvgqp91ic2.webp">
+                <h3>Smartwatch Bluetooth Clássico</h3>
+                <div class="preco">R$120,00</div>
+                <a class="botao" href="https://s.shopee.com.br/4AxdripAGy">Comprar Agora</a>
+            </div>
+            <div class="card">
+                <img src="https://down-bs-br.img.susercontent.com/br-11134207-820lu-mmb8uvgqp91ic2.webp">
+                <h3>Smartwatch Edição Premium</h3>
+                <div class="preco">R$149,90</div>
+                <a class="botao" href="https://s.shopee.com.br/4AxdripAGy">Comprar Agora</a>
+            </div>
+            <div class="card">
+                <img src="https://down-bs-br.img.susercontent.com/br-11134207-820lu-mmb8uvgqp91ic2.webp">
+                <h3>Smartwatch Pro Esportivo</h3>
+                <div class="preco">R$135,00</div>
+                <a class="botao" href="https://s.shopee.com.br/4AxdripAGy">Comprar Agora</a>
+            </div>
+        </div>
+        <button class="seta seta-dir" onclick="scrollCarrossel(this, 1)">&#10095;</button>
+    </div>
 
-<div class="grade">
+    <h2>🎧 Áudio e Som Premium</h2>
+    <div class="carrossel-wrapper">
+        <button class="seta seta-esq" onclick="scrollCarrossel(this, -1)">&#10094;</button>
+        <div class="carrossel-container">
+            <div class="card">
+                <img src="https://down-zl-br.img.susercontent.com/br-11134207-7r98o-maoel0dj6b5l5c.webp">
+                <h3>Kit 2x Fones Bluetooth Gamer TWS</h3>
+                <div class="preco">R$59,30</div>
+                <a class="botao" href="https://s.shopee.com.br/Ll1lYUwfZ">Comprar Agora</a>
+            </div>
+            <div class="card">
+                <img src="https://down-zl-br.img.susercontent.com/br-11134207-820m9-mm9qmldg6rcw4b.webp">
+                <h3>Caixa de Som Bluetooth Potente</h3>
+                <div class="preco">R$59,00</div>
+                <a class="botao" href="https://s.shopee.com.br/Ll1m7LLQ7">Comprar Agora</a>
+            </div>
+            <div class="card">
+                <img src="https://down-bs-br.img.susercontent.com/br-11134207-820m9-mokmndykmltx26.webp">
+                <h3>Fone Bluetooth Sem Fio Compacto</h3>
+                <div class="preco">R$39,90</div>
+                <a class="botao" href="https://s.shopee.com.br/2LVzfoMSVk">Comprar Agora</a>
+            </div>
+        </div>
+        <button class="seta seta-dir" onclick="scrollCarrossel(this, 1)">&#10095;</button>
+    </div>
 
-<div class="card">
-<img src="https://down-zl-br.img.susercontent.com/br-11134207-7r98o-maoel0dj6b5l5c.webp">
-<h3>Kit 2x Fones Bluetooth Gamer TWS</h3>
-<div class="preco">R$59,30</div>
-<a class="botao" href="https://s.shopee.com.br/Ll1lYUwfZ">Comprar Agora</a>
-</div>
+    <h2>🔌 Casa Inteligente e Acessórios</h2>
+    <div class="carrossel-wrapper">
+        <button class="seta seta-esq" onclick="scrollCarrossel(this, -1)">&#10094;</button>
+        <div class="carrossel-container">
+            <div class="card">
+                <img src="https://down-bs-br.img.susercontent.com/sg-11134201-825ak-mgbu0e0y83ykad.webp">
+                <h3>Tomada Torre 12 Saídas + USB</h3>
+                <div class="preco">R$41,90</div>
+                <a class="botao" href="https://s.shopee.com.br/5fmY6lOcpc">Comprar Agora</a>
+            </div>
+            <div class="card">
+                <img src="https://down-bs-br.img.susercontent.com/sg-11134201-825ak-mgbu0e0y83ykad.webp">
+                <h3>Adaptador Torre Slim Multi-tomadas</h3>
+                <div class="preco">R$45,00</div>
+                <a class="botao" href="https://s.shopee.com.br/5fmY6lOcpc">Comprar Agora</a>
+            </div>
+            <div class="card">
+                <img src="https://down-bs-br.img.susercontent.com/sg-11134201-825ak-mgbu0e0y83ykad.webp">
+                <h3>Hub de Tomadas Inteligente</h3>
+                <div class="preco">R$39,99</div>
+                <a class="botao" href="https://s.shopee.com.br/5fmY6lOcpc">Comprar Agora</a>
+            </div>
+        </div>
+        <button class="seta seta-dir" onclick="scrollCarrossel(this, 1)">&#10095;</button>
+    </div>
 
-<div class="card">
-<img src="https://down-bs-br.img.susercontent.com/br-11134207-820lu-mmb8uvgqp91ic2.webp">
-<h3>Smartwatch Bluetooth</h3>
-<div class="preco">R$120,00</div>
-<a class="botao" href="https://s.shopee.com.br/4AxdripAGy">Comprar Agora</a>
-</div>
-
-<div class="card">
-<img src="https://down-zl-br.img.susercontent.com/br-11134207-820m9-mm9qmldg6rcw4b.webp">
-<h3>Caixa de Som Bluetooth Potente</h3>
-<div class="preco">R$59,00</div>
-<a class="botao" href="https://s.shopee.com.br/Ll1m7LLQ7">Comprar Agora</a>
-</div>
-
-<div class="card">
-<img src="https://down-bs-br.img.susercontent.com/sg-11134201-825ak-mgbu0e0y83ykad.webp">
-<h3>Tomada Torre 12 Saídas + USB</h3>
-<div class="preco">R$41,90</div>
-<a class="botao" href="https://s.shopee.com.br/5fmY6lOcpc">Comprar Agora</a>
-</div>
-
-<div class="card">
-<img src="https://down-bs-br.img.susercontent.com/sg-11134201-825zz-mlc440901s057d.webp">
-<h3>Massageador Elétrico com Aquecimento</h3>
-<div class="preco">R$119,99</div>
-<a class="botao" href="https://s.shopee.com.br/2qSMjHkg7l">Comprar Agora</a>
-</div>
-
-<div class="card">
-<img src="https://down-bs-br.img.susercontent.com/br-11134207-820m9-mokmndykmltx26.webp">
-<h3>Fone Bluetooth Sem Fio</h3>
-<div class="preco">R$39,90</div>
-<a class="botao" href="https://s.shopee.com.br/2LVzfoMSVk">Comprar Agora</a>
-</div>
-
-</div>
+    <h2>💆 Cuidados e Bem-Estar</h2>
+    <div class="carrossel-wrapper">
+        <button class="seta seta-esq" onclick="scrollCarrossel(this, -1)">&#10094;</button>
+        <div class="carrossel-container">
+            <div class="card">
+                <img src="https://down-bs-br.img.susercontent.com/sg-11134201-825zz-mlc440901s057d.webp">
+                <h3>Massageador Elétrico Aquecimento</h3>
+                <div class="preco">R$119,99</div>
+                <a class="botao" href="https://s.shopee.com.br/2qSMjHkg7l">Comprar Agora</a>
+            </div>
+            <div class="card">
+                <img src="https://down-bs-br.img.susercontent.com/sg-11134201-825zz-mlc440901s057d.webp">
+                <h3>Massageador Alívio de Dores Pro</h3>
+                <div class="preco">R$129,90</div>
+                <a class="botao" href="https://s.shopee.com.br/2qSMjHkg7l">Comprar Agora</a>
+            </div>
+            <div class="card">
+                <img src="https://down-bs-br.img.susercontent.com/sg-11134201-825zz-mlc440901s057d.webp">
+                <h3>Aparelho de Massagem Portátil</h3>
+                <div class="preco">R$109,00</div>
+                <a class="botao" href="https://s.shopee.com.br/2qSMjHkg7l">Comprar Agora</a>
+            </div>
+        </div>
+        <button class="seta seta-dir" onclick="scrollCarrossel(this, 1)">&#10095;</button>
+    </div>
 
 </section>
 
 <footer>
 © 2026 • Produtos Selecionados
 </footer>
+
+<script>
+// Função Inteligente para mover os carrosséis separadamente
+function scrollCarrossel(botao, direcao) {
+    const wrapper = botao.parentElement;
+    const container = wrapper.querySelector('.carrossel-container');
+    const scrollAmount = 280; // Largura do card + gap
+    container.scrollBy({
+        left: direcao * scrollAmount,
+        behavior: 'smooth'
+    });
+}
+</script>
 
 </body>
 </html>
